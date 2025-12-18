@@ -1,0 +1,16 @@
+<h2>Master Steelcase</h2>
+        <button (click)="add()">Tambah</button>
+
+        <table>
+        <tr>
+            <th>Kode</th><th>Type</th><th>Aksi</th>
+        </tr>
+        <tr *ngFor="let s of steelcases">
+            <td>{{ s.kode }}</td>
+            <td>{{ s.type }}</td>
+            <td>
+            <button (click)="edit(s.id)">Edit</button>
+            <button (click)="remove(s.id)">Hapus</button>
+            </td>
+        </tr>
+        </table>

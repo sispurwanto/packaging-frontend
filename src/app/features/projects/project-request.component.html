@@ -1,0 +1,10 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+      <input formControlName="project_name">
+      <select formControlName="steelcase_id">
+        <option *ngFor="let s of steelcases" [value]="s.id">
+          {{ s.kode }}
+        </option>
+      </select>
+      <input type="file" (change)="onFile($event)">
+      <button>Submit</button>
+    </form>
