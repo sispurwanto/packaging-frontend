@@ -1,37 +1,23 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from '../../core/services/api.service';
 import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 
 @Component({
     standalone: true,
+    selector: 'app-steelcase-list',
     imports: [
         CommonModule
     ],
-    template: `
-        <h2>Master Steelcase</h2>
-        <button (click)="add()">Tambah</button>
-
-        <table>
-        <tr>
-            <th>Kode</th><th>Type</th><th>Aksi</th>
-        </tr>
-        <tr *ngFor="let s of steelcases">
-            <td>{{ s.kode }}</td>
-            <td>{{ s.type }}</td>
-            <td>
-            <button (click)="edit(s.id)">Edit</button>
-            <button (click)="remove(s.id)">Hapus</button>
-            </td>
-        </tr>
-        </table>
-    `
+    templateUrl: './steelcase-list.component.html'
 })
 
 export class SteelcaseListComponent implements OnInit {
   steelcases: any[] = [];
+  loading = false;
 
   constructor(
-    private svc: SteelcaseService,
+    private svc: ApiService,
     private router: Router
   ) {}
 
@@ -40,7 +26,13 @@ export class SteelcaseListComponent implements OnInit {
   }
 
   load() {
-    this.svc.list().subscribe(res => this.steelcases = res);
+    this.svc.listSteelcases().subscribe({
+      next: (res: any) => {
+        this.steelcases = res.steelcases;
+        this.loading = false;
+      },
+      error: () => this.loading = false
+    });
   }
 
   add() {
@@ -53,7 +45,7 @@ export class SteelcaseListComponent implements OnInit {
 
   remove(id: number) {
     if (confirm('Hapus steelcase?')) {
-      this.svc.delete(id).subscribe(() => this.load());
+      this.svc.deleteSteelcase(id).subscribe(() => this.load());
     }
   }
 }

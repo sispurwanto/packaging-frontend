@@ -1,0 +1,79 @@
+<div *ngIf="loading">Loading...</div>
+
+<div *ngIf="!loading && project">
+
+  <h2>Detail Project</h2>
+
+  <table border="0" cellpadding="6">
+    <tr>
+      <td><b>Project Name</b></td>
+      <td>: {{ project.project.project_name }}</td>
+    </tr>
+    <tr>
+      <td><b>Created By</b></td>
+      <td>: {{ project.project.created_by }}</td>
+    </tr>
+    <tr>
+      <td><b>Created At</b></td>
+      <td>: {{ project.project.created_at | date:'yyyy-MM-dd HH:mm' }}</td>
+    </tr>
+    <tr>
+      <td><b>Steelcase</b></td>
+      <td>: {{ project.steelcase_data?.kode }}</td>
+    </tr>
+    <tr>
+      <td><b>Case In</b></td>
+      <td>:
+        {{ project.steelcase_data?.casein_panjang }} x
+        {{ project.steelcase_data?.casein_lebar }} x
+        {{ project.steelcase_data?.casein_tinggi }}
+      </td>
+    </tr>
+  </table>
+
+  <hr>
+
+  <!-- DIAGRAM DI BAWAH FORM -->
+<div *ngIf="diagramData.length">
+  <app-steelcase-selector
+    [steelcases]="diagramData"
+    [steelcaseUsed]="steelcaseUsed"
+    (selected)="selectedSteelcase = $event">
+  </app-steelcase-selector>
+
+  <app-project-diagram
+    *ngIf="selectedSteelcase"
+    [steelcase]="selectedSteelcase">
+  </app-project-diagram>
+</div>
+
+  <!-- <h3>Detail Items</h3>
+
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Kode Item</th>
+        <th>Qty</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of project.items; let idx = index">
+        <td>{{ idx + 1 }}</td>
+        <td>{{ i.kode }}</td>
+        <td>{{ i.qty }}</td>
+        <td>{{ i.note || '-' }}</td>
+      </tr>
+
+      <tr *ngIf="!project.items || project.items.length === 0">
+        <td colspan="4" align="center">Tidak ada item</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <button (click)="exportExcel()">Export Excel</button> -->
+
+</div>

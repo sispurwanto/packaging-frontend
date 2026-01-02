@@ -1,0 +1,30 @@
+<h2>Master User</h2>
+
+<button (click)="add()">+ Tambah User</button>
+
+<table border="1" width="100%" cellpadding="8" style="margin-top:12px">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let u of users">
+      <td>{{ u.id }}</td>
+      <td>{{ u.name }}</td>
+      <td>{{ u.email }}</td>
+      <td>{{ u.role }}</td>
+      <td>
+        <button (click)="edit(u.id!)">Edit</button>
+        <button (click)="delete(u.id!)">Hapus</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="loading">Loading...</p>

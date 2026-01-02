@@ -1,0 +1,59 @@
+.diagram-wrapper {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;  /* 🔥 3D jauh lebih besar */
+  gap: 18px;
+  align-items: stretch;
+}
+
+.canvas-3d {
+  width: 100%;
+  height: 620px;        /* 🔥 BESAR */
+  min-height: 75vh;     /* 🔥 adapt layar */
+  border-radius: 16px;
+  background: linear-gradient(#f8fafc, #eef2f7);
+}
+
+.info-panel {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.info-panel h4 {
+  margin: 0 0 8px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  font-size: 13px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 6px;
+  border-bottom: 1px solid #eee;
+}
+
+.qty {
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .diagram-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-3d {
+    height: 420px;
+  }
+}
+

@@ -1,0 +1,38 @@
+<div class="layout">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h3>Packing System</h3>
+    <nav>
+      <a
+        routerLink="/projects"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Projects
+      </a>
+
+      <a
+        routerLink="/steelcases"
+        routerLinkActive="active"
+      >
+        Steelcase
+      </a>
+
+      <a
+        routerLink="/users"
+        routerLinkActive="active"
+      >
+        Users
+      </a>
+      <!-- <a routerLink="/login">Logout</a> -->
+       <button (click)="logout()">Logout</button>
+    </nav>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

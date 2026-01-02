@@ -1,0 +1,55 @@
+<!-- <div class="diagram-wrapper">
+  <div class="diagram-header">
+    <div>
+      Steelcase <b>{{ steelcase.steelcase_index + 1 }} — {{ steelcase.steelcase_code }} </b>
+      <small class="muted">
+        ({{ steelcase.steelcase_size.w }} ×
+        {{ steelcase.steelcase_size.d }} ×
+        {{ steelcase.steelcase_size.h }})
+      </small>
+    </div>
+
+    <div class="muted">
+      Empty: {{ steelcase.emptyPercent }}%
+    </div>
+  </div>
+
+  <div #canvas class="diagram-canvas"></div>
+
+  <div class="diagram-footer">
+    <span>Total Weight: {{ steelcase.totalWeight }} kg</span>
+    <span>Total Volume: {{ steelcase.totalVolume }}</span>
+  </div>
+</div> -->
+
+<div class="diagram-wrapper">
+  <div #canvas class="canvas-3d"></div>
+
+  <div class="info-panel">
+    <h4>Steelcase ke : <b>{{ steelcase.steelcase_index + 1 }} — {{ steelcase.steelcase_code }} </b></h4>
+
+    <div class="meta">
+      <span>Empty: {{ steelcase.emptyPercent }}%</span>
+      <span>Weight: {{ steelcase.totalWeight }} kg</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Part</th>
+          <th>Nama</th>
+          <th>Dimensi</th>
+          <th>Qty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of partSummary">
+          <td>{{ p.code }}</td>
+          <td>{{ p.name }}</td>
+          <td class="dimensi">{{ p.dimensi }}</td>
+          <td class="qty">{{ p.qty }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

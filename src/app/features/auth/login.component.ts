@@ -21,12 +21,18 @@ export class LoginComponent {
         this.form = this.fb.group({ username: ['', Validators.required], password: ['', Validators.required] });
     }
 
-
     submit(){
         const v = this.form.value;
         this.auth.login(v.username, v.password).subscribe({
-            next: (res:any) => { this.auth.setToken(res.token); this.router.navigate(['/projects']); },
-            error: (e) => alert('login failed')
+            next: (res:any) => { 
+                console.log('login success', res);
+                this.auth.setToken(res.token); 
+                this.router.navigate(['/projects']); 
+            },
+            error: (e) => {
+                console.error('login failed', e);
+                alert(e.error?.message || 'Login failed');
+            }
         });
     }
 }

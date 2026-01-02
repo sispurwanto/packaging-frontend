@@ -1,10 +1,96 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-      <input formControlName="project_name">
-      <select formControlName="steelcase_id">
+<!-- <form [formGroup]="form" (ngSubmit)="submit()">
+
+  <input
+    type="text"
+    formControlName="project_name"
+    placeholder="Project Name">
+
+  <select formControlName="steelcase_code">
+    <option value="">-- Pilih Steelcase --</option>
+    <option *ngFor="let s of steelcases" [value]="s.id">
+      {{ s.kode }} - {{ s.type }}
+    </option>
+  </select>
+
+  <input
+    type="file"
+    (change)="onFile($event)">
+
+  <button type="submit">Simpan</button>
+
+</form> -->
+
+
+<div class="card">
+  <div class="card-title">Request Susun Part di Steelcase</div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- PROJECT NAME -->
+    <div class="form-group">
+      <label>Project Name</label>
+      <input
+        type="text"
+        formControlName="project_name"
+        [class.invalid]="form.get('project_name')?.invalid && form.get('project_name')?.touched">
+
+      <small class="error"
+        *ngIf="form.get('project_name')?.invalid && form.get('project_name')?.touched">
+        Project name wajib diisi
+      </small>
+    </div>
+
+    <!-- STEELCASE -->
+    <div class="form-group">
+      <label>Steelcase</label>
+      <select formControlName="steelcase_code"
+        [class.invalid]="form.get('steelcase_code')?.invalid && form.get('steelcase_code')?.touched">
+        <option value="">-- Pilih Steelcase --</option>
         <option *ngFor="let s of steelcases" [value]="s.id">
-          {{ s.kode }}
+          {{ s.kode }} - {{ s.type }}
         </option>
       </select>
-      <input type="file" (change)="onFile($event)">
-      <button>Submit</button>
-    </form>
+      <small class="error"
+        *ngIf="form.get('steelcase_code')?.invalid && form.get('steelcase_code')?.touched">
+        Steelcase wajib dipilih
+      </small>
+    </div>
+
+    <!-- FILE UPLOAD -->
+    <div class="form-group">
+      <label>Upload File Excel</label>
+      <input
+        type="file"
+        accept=".xls,.xlsx"
+        (change)="onFile($event)">
+      <small>Format .xls / .xlsx</small>
+    </div>
+
+    <!-- ACTION -->
+    <div class="text-right mt-2">
+      <!-- <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="form.invalid">
+        Susun Part di Steelcase
+      </button> -->
+      <button type="submit" class="btn btn-primary">Susun Part di Steelcase</button>
+    </div>
+
+  </form>
+</div>
+
+<!-- DIAGRAM DI BAWAH FORM -->
+<div *ngIf="diagramData.length">
+  <app-steelcase-selector
+    [steelcases]="diagramData"
+    [steelcaseUsed]="steelcaseUsed"
+    (selected)="selectedSteelcase = $event">
+  </app-steelcase-selector>
+
+  <app-project-diagram
+    *ngIf="selectedSteelcase"
+    [steelcase]="selectedSteelcase">
+  </app-project-diagram>
+</div>
+
