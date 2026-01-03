@@ -1,52 +1,53 @@
-<h2>{{ isEdit ? 'Edit Steelcase' : 'Tambah Steelcase' }}</h2>
+<div class="card">
+  <div class="card-title"><h2>{{ isEdit ? 'Edit Steelcase' : 'Tambah Steelcase' }}</h2></div>
+    <form [formGroup]="form" (ngSubmit)="save()">
 
-<form [formGroup]="form" (ngSubmit)="save()">
+    <fieldset>
+        <legend>Info Umum</legend>
 
-  <fieldset>
-    <legend>Info Umum</legend>
+        <label>Kode</label>
+        <input type="text" formControlName="kode">
+        <small *ngIf="form.controls['kode'].touched && form.controls['kode'].invalid">
+        Kode wajib diisi
+        </small>
 
-    <label>Kode</label>
-    <input type="text" formControlName="kode">
-    <small *ngIf="form.controls['kode'].touched && form.controls['kode'].invalid">
-      Kode wajib diisi
-    </small>
+        <label>Type</label>
+        <input type="text" formControlName="type">
+    </fieldset>
 
-    <label>Type</label>
-    <input type="text" formControlName="type">
-  </fieldset>
+    <fieldset>
+        <legend>Ukuran Case In</legend>
 
-  <fieldset>
-    <legend>Ukuran Case In</legend>
+        <label>Panjang</label>
+        <input type="number" formControlName="casein_panjang">
 
-    <label>Panjang</label>
-    <input type="number" formControlName="casein_panjang">
+        <label>Lebar</label>
+        <input type="number" formControlName="casein_lebar">
 
-    <label>Lebar</label>
-    <input type="number" formControlName="casein_lebar">
+        <label>Tinggi</label>
+        <input type="number" formControlName="casein_tinggi">
+    </fieldset>
 
-    <label>Tinggi</label>
-    <input type="number" formControlName="casein_tinggi">
-  </fieldset>
+    <fieldset>
+        <legend>Ukuran Case Out</legend>
 
-  <fieldset>
-    <legend>Ukuran Case Out</legend>
+        <label>Panjang</label>
+        <input type="number" formControlName="caseout_panjang">
 
-    <label>Panjang</label>
-    <input type="number" formControlName="caseout_panjang">
+        <label>Lebar</label>
+        <input type="number" formControlName="caseout_lebar">
 
-    <label>Lebar</label>
-    <input type="number" formControlName="caseout_lebar">
+        <label>Tinggi</label>
+        <input type="number" formControlName="caseout_tinggi">
+    </fieldset>
 
-    <label>Tinggi</label>
-    <input type="number" formControlName="caseout_tinggi">
-  </fieldset>
+    <div style="margin-top:16px">
+        <button class="btn btn-primary" type="submit" [disabled]="loading">
+            {{ loading ? 'Menyimpan...' : 'Simpan' }}
+        </button>
 
-  <div style="margin-top:16px">
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Menyimpan...' : 'Simpan' }}
-    </button>
+        <button class="btn btn-secondary" type="button" (click)="cancel()">Batal</button>
+    </div>
 
-    <button type="button" (click)="cancel()">Batal</button>
-  </div>
-
-</form>
+    </form>
+</div>

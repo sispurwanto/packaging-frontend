@@ -1,26 +1,3 @@
-<!-- <form [formGroup]="form" (ngSubmit)="submit()">
-
-  <input
-    type="text"
-    formControlName="project_name"
-    placeholder="Project Name">
-
-  <select formControlName="steelcase_code">
-    <option value="">-- Pilih Steelcase --</option>
-    <option *ngFor="let s of steelcases" [value]="s.id">
-      {{ s.kode }} - {{ s.type }}
-    </option>
-  </select>
-
-  <input
-    type="file"
-    (change)="onFile($event)">
-
-  <button type="submit">Simpan</button>
-
-</form> -->
-
-
 <div class="card">
   <div class="card-title">Request Susun Part di Steelcase</div>
 
@@ -67,14 +44,9 @@
     </div>
 
     <!-- ACTION -->
-    <div class="text-right mt-2">
-      <!-- <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="form.invalid">
-        Susun Part di Steelcase
-      </button> -->
-      <button type="submit" class="btn btn-primary">Susun Part di Steelcase</button>
+    <div>
+      <button type="submit" class="btn btn-primary">Susun Part ke Steelcase</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Batal</button>
     </div>
 
   </form>
@@ -85,6 +57,7 @@
   <app-steelcase-selector
     [steelcases]="diagramData"
     [steelcaseUsed]="steelcaseUsed"
+    [steelcaseData]="steelcaseData"
     (selected)="selectedSteelcase = $event">
   </app-steelcase-selector>
 

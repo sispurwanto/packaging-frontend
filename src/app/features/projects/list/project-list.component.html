@@ -1,6 +1,6 @@
-<h2>Daftar Project</h2>
+<!-- <h2>Daftar Project</h2> -->
 
-<button (click)="create()">+ Project Baru</button>
+<!-- <button class="btn btn-primary" (click)="create()">+ Project Baru</button>
 
 <div *ngIf="loading">Loading...</div>
 
@@ -31,4 +31,50 @@
       <td colspan="6" align="center">Belum ada data</td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div class="table-wrapper">
+
+  <div class="table-title">Daftar Project</div>
+  <button class="btn btn-primary" (click)="create()">+ Project Baru</button>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <table class="app-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Project</th>
+        <th>Steelcase</th>
+        <th>Created By</th>
+        <th>Created At</th>
+        <th class="center">Aksi</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of projects">
+        <td>{{ p.id }}</td>
+        <td>{{ p.project_name }}</td>
+        <td>{{ p.steelcase_id }}</td>
+        <td>{{ p.created_by }}</td>
+        <td>{{ p.created_at | date:'yyyy-MM-dd HH:mm' }}</td>
+        <td class="center">
+          <div class="table-actions">
+            <button class="btn btn-secondary" (click)="detail(p.id)">
+              Detail
+            </button>
+            <button class="btn btn-danger" (click)="delete(p.id)">
+              Hapus
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="projects.length === 0">
+        <td colspan="6" align="center">Belum ada data</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+

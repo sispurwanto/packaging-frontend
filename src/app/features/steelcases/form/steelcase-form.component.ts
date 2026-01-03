@@ -20,7 +20,6 @@ export class SteelcaseFormComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        // private svc: SteelcaseService,
         private svc: ApiService,
         private route: ActivatedRoute,
         private router: Router
@@ -43,16 +42,16 @@ export class SteelcaseFormComponent implements OnInit {
         this.id = Number(this.route.snapshot.paramMap.get('id'));
 
         if (this.id) {
-        this.isEdit = true;
-        this.loadDetail(this.id);
+            this.isEdit = true;
+            this.loadDetail(this.id);
         }
     }
 
     loadDetail(id: number) {
         this.loading = true;
         this.svc.getSteelcases(id).subscribe({
-        next: res => {
-            this.form.patchValue(res);
+        next: (res: any) => {
+            this.form.patchValue(res.steelcase);
             this.loading = false;
         },
         error: () => {

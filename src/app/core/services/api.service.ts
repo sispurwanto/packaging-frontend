@@ -11,10 +11,10 @@ export class ApiService {
 
     // users
     listUsers() { return this.http.get<User[]>(`${environment.apiUrl}/users`); }
-    getUser(id: number) { return this.http.get<User>(`${environment.apiUrl}/users/${id}`); }
+    getUser(id: string) { return this.http.get<User>(`${environment.apiUrl}/users/${id}`); }
     createUser(payload: User) { return this.http.post(`${environment.apiUrl}/users`, payload); }
-    updateUser(id:number,payload:User){ return this.http.put(`${environment.apiUrl}/users/${id}`, payload); }
-    deleteUser(id:number){ return this.http.delete(`${environment.apiUrl}/users/${id}`); }
+    updateUser(id:string,payload:User){ return this.http.put(`${environment.apiUrl}/users/${id}`, payload); }
+    deleteUser(id:string){ return this.http.delete(`${environment.apiUrl}/users/${id}`); }
 
 
     // steelcases
@@ -52,6 +52,9 @@ export class ApiService {
         formData.append('file', payload.file); // penting!
 
         return this.http.post(`${environment.apiUrl}/packing`, formData);
+    }
+    deleteProject(id:string){ 
+        return this.http.delete(`${environment.apiUrl}/project/${id}`); 
     }
 
     uploadProjectExcel(id:number, file: File){

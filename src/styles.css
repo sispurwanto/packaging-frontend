@@ -121,64 +121,138 @@ select:focus {
    BUTTON
 ================================ */
 .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 10px 16px;
-  border-radius: 6px;
-  border: none;
+  border-radius: 10px;
   font-size: 14px;
-  font-weight: 500;
-}
-
-.btn-primary {
-  background: #2563eb;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: #1d4ed8;
-}
-
-.btn-danger {
-  background: #dc2626;
-  color: #fff;
-}
-
-.btn-secondary {
-  background: #6b7280;
-  color: #fff;
-}
-
-.btn + .btn {
-  margin-left: 8px;
-}
-
-/* ===============================
-   TABLE
-================================ */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-thead {
-  background: #e5e7eb;
-}
-
-th, td {
-  padding: 10px 12px;
-  font-size: 14px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-th {
-  text-align: left;
   font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all .18s ease;
+  margin-right: 8px;
+  /* margin-bottom: 8px; */
+  text-align: center;
 }
 
-tbody tr:hover {
+.btn i {
+  font-size: 16px;
+}
+
+/* PRIMARY */
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #fff;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(37,99,235,.35);
+}
+
+/* SECONDARY */
+.btn-secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+/* SUCCESS */
+.btn-success {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: #fff;
+}
+
+/* DANGER */
+.btn-danger {
+  background: linear-gradient(135deg, #dc2626, #991b1b);
+  color: #fff;
+}
+
+/* DISABLED */
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* ================= TABLE SYSTEM ================= */
+
+.table-wrapper {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  overflow-x: auto;
+}
+
+.table-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* BASE TABLE */
+table.app-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+/* HEADER */
+table.app-table thead th {
+  background: linear-gradient(180deg, #f9fafb, #f3f4f6);
+  color: #111827;
+  font-weight: 700;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+/* BODY */
+table.app-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+/* STRIPED */
+table.app-table tbody tr:nth-child(even) {
   background: #f9fafb;
+}
+
+/* HOVER */
+table.app-table tbody tr:hover {
+  background: #eef2ff;
+}
+
+/* ALIGN */
+table.app-table .center {
+  text-align: center;
+}
+table.app-table .right {
+  text-align: right;
+}
+table.app-table .qty {
+  font-weight: 700;
+  color: #2563eb;
+  text-align: right;
+}
+
+/* ACTION COLUMN */
+.table-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* SMALL BUTTONS INSIDE TABLE */
+.table-actions .btn {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
 }
 
 /* ===============================
@@ -273,5 +347,17 @@ select.invalid {
   font-size: 12px;
   margin-top: 4px;
   display: block;
+}
+
+.steelcase-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.selector-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
 }
 

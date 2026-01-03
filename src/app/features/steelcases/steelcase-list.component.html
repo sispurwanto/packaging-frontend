@@ -1,16 +1,28 @@
-<h2>Master Steelcase</h2>
-        <button (click)="add()">Tambah</button>
+<div class="table-wrapper">
 
-        <table>
-        <tr>
-            <th>Kode</th><th>Type</th><th>Aksi</th>
-        </tr>
-        <tr *ngFor="let s of steelcases">
-            <td>{{ s.kode }}</td>
-            <td>{{ s.type }}</td>
-            <td>
-            <button (click)="edit(s.id)">Edit</button>
-            <button (click)="remove(s.id)">Hapus</button>
-            </td>
-        </tr>
-        </table>
+  <div class="table-title">Master Steelcase</div>
+  <button class="btn btn-primary"(click)="add()">+ Tambah</button>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <table class="app-table">
+        <thead><tr>
+            <th>Kode</th><th>Type</th><th>Case In</th><th>Case Out</th><th class="center">Aksi</th>
+        </tr></thead>
+        <tbody>
+          <tr *ngFor="let s of steelcases">
+              <td>{{ s.kode }}</td>
+              <td>{{ s.type }}</td>
+              <td>{{ s.casein_panjang }} x {{ s.casein_lebar }} x {{ s.casein_tinggi }}</td>
+              <td>{{ s.caseout_panjang }} x {{ s.caseout_lebar }} x {{ s.caseout_tinggi }}</td>
+              <td class="center">
+              <button class="btn btn-secondary" (click)="edit(s.id)">Edit</button>
+              <button class="btn btn-danger" (click)="remove(s.id)">Hapus</button>
+              </td>
+          </tr>
+          <tr *ngIf="steelcases.length === 0">
+            <td colspan="6" align="center">Belum ada data</td>
+          </tr>
+        </tbody>
+  </table>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../core/services/api.service';
 import { ProjectDiagramComponent } from '../diagram/project-diagram.component';
@@ -21,10 +21,12 @@ import { SteelcaseSelectorComponent } from '../diagram/steelcase-selector.compon
   diagramData: any[] = [];
   steelcaseUsed: any = 0;
   selectedSteelcase:any;
+  steelcaseData: any = {};
 
   constructor(
     private route: ActivatedRoute,
-    private api: ApiService
+    private api: ApiService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ import { SteelcaseSelectorComponent } from '../diagram/steelcase-selector.compon
         this.diagramData = res.visualization_3d || [];
         this.steelcaseUsed = res.steelcases_used || 0;
         this.selectedSteelcase = this.diagramData[0];
+        this.steelcaseData = res.steelcase_data || {};
         this.loading = false;
       },
       error: () => this.loading = false
@@ -59,5 +62,9 @@ import { SteelcaseSelectorComponent } from '../diagram/steelcase-selector.compon
         a.click();
         window.URL.revokeObjectURL(url);
       });
+  }
+
+  cancel() {
+    this.router.navigate(['/projects']);
   }
 }

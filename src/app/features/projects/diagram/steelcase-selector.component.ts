@@ -5,18 +5,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   selector: 'app-steelcase-selector',
   imports: [CommonModule],
-  template: `
-    <label>Pilih Steelcase dari {{ steelcaseUsed }} : </label>
-    <select class="form-select" (change)="select($event)">
-      <option *ngFor="let s of steelcases; let i=index" [value]="i">
-        {{ s.steelcase_code }} - {{ s.steelcase_index + 1 }}
-      </option>
-    </select>
-  `
+  templateUrl: './steelcase-selector.component.html'
 })
 export class SteelcaseSelectorComponent {
   @Input() steelcases:any[] = [];
   @Input() steelcaseUsed:any = 0;
+  @Input() steelcaseData:any = {};
   @Output() selected = new EventEmitter<any>();
 
   select(e:any) {

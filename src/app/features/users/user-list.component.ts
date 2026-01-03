@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
-// import { User } from './user.model';
-
+import { UUID } from 'crypto';
 @Component({
   standalone: true,
   selector: 'app-user-list',
@@ -27,8 +26,8 @@ export class UserListComponent implements OnInit {
   load() {
     this.loading = true;
     this.svc.listUsers().subscribe({
-      next: res => {
-        this.users = res;
+      next: (res: any) => {
+        this.users = res.users;
         this.loading = false;
       },
       error: () => {
@@ -42,11 +41,11 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/users/new']);
   }
 
-  edit(id: number) {
+  edit(id: string) {
     this.router.navigate(['/users', id]);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     if (!confirm('Hapus user ini?')) return;
 
     this.svc.deleteUser(id).subscribe({

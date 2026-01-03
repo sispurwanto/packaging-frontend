@@ -42,4 +42,13 @@ export class ProjectListComponent implements OnInit {
   detail(id: UUID): void {
     this.router.navigate(['/projects', id]);
   }
+
+  delete(id: UUID): void {
+    if (!confirm('Hapus project ini?')) return;
+
+    this.api.deleteProject(id).subscribe({
+      next: () => this.load(),
+      error: () => alert('Gagal hapus project')
+    });
+  }
 }

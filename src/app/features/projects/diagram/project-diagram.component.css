@@ -3,6 +3,7 @@
   grid-template-columns: 2.5fr 1fr;  /* 🔥 3D jauh lebih besar */
   gap: 18px;
   align-items: stretch;
+  margin-top: 8px;
 }
 
 .canvas-3d {
@@ -46,6 +47,15 @@ th, td {
   text-align: center;
   font-weight: bold;
 }
+
+.color-box {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid #333;
+}
+
 
 @media (max-width: 1024px) {
   .diagram-wrapper {

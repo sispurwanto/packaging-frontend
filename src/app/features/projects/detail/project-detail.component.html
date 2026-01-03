@@ -30,7 +30,9 @@
       </td>
     </tr>
   </table>
-
+  <div>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Kembali</button>
+    </div>
   <hr>
 
   <!-- DIAGRAM DI BAWAH FORM -->
@@ -38,6 +40,7 @@
   <app-steelcase-selector
     [steelcases]="diagramData"
     [steelcaseUsed]="steelcaseUsed"
+    [steelcaseData]="steelcaseData"
     (selected)="selectedSteelcase = $event">
   </app-steelcase-selector>
 

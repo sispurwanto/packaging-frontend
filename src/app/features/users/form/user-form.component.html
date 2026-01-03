@@ -1,29 +1,30 @@
-<h2>{{ isEdit ? 'Edit User' : 'Tambah User' }}</h2>
+<div class="card">
+  <div class="card-title"><h2>{{ isEdit ? 'Edit User' : 'Tambah User' }}</h2></div>
+  <form [formGroup]="form" (ngSubmit)="save()">
 
-<form [formGroup]="form" (ngSubmit)="save()">
+    <label>Nama</label>
+    <input type="text" formControlName="name">
 
-  <label>Nama</label>
-  <input type="text" formControlName="name">
+    <label>Email</label>
+    <input type="email" formControlName="email">
 
-  <label>Email</label>
-  <input type="email" formControlName="email">
+    <label>Role</label>
+    <select formControlName="role">
+      <option value="">-- pilih --</option>
+      <option value="ADMIN">ADMIN</option>
+      <option value="USER">USER</option>
+    </select>
 
-  <label>Role</label>
-  <select formControlName="role">
-    <option value="">-- pilih --</option>
-    <option value="ADMIN">ADMIN</option>
-    <option value="USER">USER</option>
-  </select>
+    <label>Password</label>
+    <input type="password" formControlName="password">
+    <small *ngIf="isEdit">Kosongkan jika tidak ingin mengganti password</small>
 
-  <label>Password</label>
-  <input type="password" formControlName="password">
-  <small *ngIf="isEdit">Kosongkan jika tidak ingin mengganti password</small>
+    <div style="margin-top:16px">
+      <button class="btn btn-primary" type="submit" [disabled]="loading">
+        {{ loading ? 'Menyimpan...' : 'Simpan' }}
+      </button>
+      <button class="btn btn-secondary" type="button" (click)="cancel()">Batal</button>
+    </div>
 
-  <div style="margin-top:16px">
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Menyimpan...' : 'Simpan' }}
-    </button>
-    <button type="button" (click)="cancel()">Batal</button>
-  </div>
-
-</form>
+  </form>
+</div>

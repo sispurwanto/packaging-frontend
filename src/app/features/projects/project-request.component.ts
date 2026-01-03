@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from '../../core/services/api.service';
 import { ProjectDiagramComponent } from './diagram/project-diagram.component';
@@ -25,10 +26,13 @@ export class ProjectRequestComponent implements OnInit{
     diagramData: any[] = [];
     selectedSteelcase:any;
     steelcaseUsed: any = 0;
+    steelcaseData: any = {};
 
     constructor(
         private fb: FormBuilder,
-        private api: ApiService
+        private api: ApiService,
+        private route: ActivatedRoute,
+        private router: Router
     ) {
         this.form = this.fb.group({
             project_name: ['', Validators.required],
@@ -74,14 +78,17 @@ export class ProjectRequestComponent implements OnInit{
                 this.diagramData = data.visualization_3d;
                 this.selectedSteelcase = this.diagramData[0];
                 this.steelcaseUsed = data.steelcases_used;
-                // contoh redirect
-                // this.router.navigate(['/projects', res.project_id]);
+                this.steelcaseData = data.steelcase_data;
             },
             error: err => {
                 console.error(err);
                 alert(`Gagal memproses project : ${err.error?.detail || err.message}`);
             }
         });
+    }
+
+    cancel() {
+        this.router.navigate(['/projects']);
     }
   
 }

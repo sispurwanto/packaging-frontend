@@ -1,0 +1,16 @@
+<div class="steelcase-selector">
+  <label class="selector-label">
+    Dengan Steelcase Code : {{ steelcaseData?.kode }} - Dimensi : {{ steelcaseData?.casein_panjang }} x 
+    {{ steelcaseData?.casein_lebar }} x {{ steelcaseData?.casein_tinggi }} untuk memuat part dibutuhkan ({{ steelcaseUsed }} steelcase) 
+    Dengan rincian sebagai berikut:
+  </label>
+
+  <select class="form-select" (change)="select($event)">
+    <option
+      *ngFor="let s of steelcases; let i = index"
+      [value]="i"
+    >
+      Steelcase #{{ s.steelcase_index + 1 }}
+    </option>
+  </select>
+</div>

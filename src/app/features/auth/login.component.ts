@@ -25,7 +25,7 @@ export class LoginComponent {
         const v = this.form.value;
         this.auth.login(v.username, v.password).subscribe({
             next: (res:any) => { 
-                console.log('login success', res);
+                // console.log('login success', res);
                 this.auth.setToken(res.token); 
                 this.router.navigate(['/projects']); 
             },

@@ -17,7 +17,7 @@ import { ApiService } from '../../../core/services/api.service';
 })
 export class UserFormComponent implements OnInit {
 
-  id?: number;
+  id?: string;
   isEdit = false;
   loading = false;
   form!: FormGroup;
@@ -37,20 +37,20 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.id = this.route.snapshot.paramMap.get('id')!;
     if (this.id) {
       this.isEdit = true;
       this.load(this.id);
     }
   }
 
-  load(id: number) {
-    this.svc.getUser(id).subscribe(res => {
-      this.form.patchValue({
-        name: res.name,
-        email: res.email,
-        role: res.role
-      });
+  load(id: string) {
+    this.svc.getUser(id).subscribe((res: any) => {
+        this.form.patchValue({
+            name: res.user.name,
+            email: res.user.email,
+            role: res.user.role
+        });
     });
   }
 

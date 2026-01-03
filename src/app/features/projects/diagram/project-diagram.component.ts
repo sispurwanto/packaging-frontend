@@ -97,20 +97,6 @@ export class ProjectDiagramComponent
     this.fitCamera();
   }
 
-//   drawSteelcase() {
-//     const s = this.steelcase.steelcase_size;
-
-//     const geo = new THREE.BoxGeometry(s.w, s.h, s.d);
-//     const mat = new THREE.MeshBasicMaterial({
-//       color: 0x222222,
-//       wireframe: true
-//     });
-
-//     const mesh = new THREE.Mesh(geo, mat);
-//     mesh.position.set(s.w / 2, s.h / 2, s.d / 2);
-//     this.scene.add(mesh);
-//   }
-
     drawSteelcase() {
         const s = this.steelcase.steelcase_size;
 
@@ -173,6 +159,7 @@ export class ProjectDiagramComponent
                 code: b.code,
                 name: b.name,
                 dimensi: `${b.w} × ${b.d} × ${b.h}`,
+                color: b.color,
                 qty: 0
             };
             }
@@ -181,25 +168,6 @@ export class ProjectDiagramComponent
 
         this.partSummary = Object.values(map);
     }
-
-    // fitCamera() {
-    //     const s = this.steelcase.steelcase_size;
-    //     const maxDim = Math.max(s.w, s.h, s.d);
-
-    //     this.camera.position.set(
-    //         maxDim * 1.2,
-    //         maxDim * 0.9,
-    //         maxDim * 1.2
-    //     );
-
-    //     this.controls.target.set(
-    //         s.w / 2,
-    //         s.h / 2,
-    //         s.d / 2
-    //     );
-
-    //     this.controls.update();
-    // }
 
     fitCamera() {
         const s = this.steelcase.steelcase_size;
