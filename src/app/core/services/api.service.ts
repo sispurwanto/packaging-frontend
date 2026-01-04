@@ -62,4 +62,8 @@ export class ApiService {
         return this.http.post(`${environment.apiUrl}/project/${id}/upload`, fd);
     }
     exportProjectExcel(id:number){ return this.http.get(`${environment.apiUrl}/project/${id}/export`, { responseType: 'blob' }); }
+    exportPartExcel(id:string){ return this.http.get(`${environment.apiUrl}/project/export/parts/${id}`, { responseType: 'blob' }); }
+    exportPackingExcel(id:string){ 
+        return this.http.get(`${environment.apiUrl}/project/export/packing/${id}`, { responseType: 'blob' }); 
+    }
 }

@@ -6,7 +6,8 @@ import {
   AfterViewInit,
   OnChanges,
   SimpleChanges,
-  HostListener
+  HostListener,
+  ChangeDetectorRef 
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -21,6 +22,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
     styleUrls: ['./project-diagram.component.css']
 })
 export class ProjectDiagramComponent
+
   implements AfterViewInit, OnChanges {
 
   @Input({ required: true }) steelcase!: any;
@@ -32,6 +34,8 @@ export class ProjectDiagramComponent
   controls!: OrbitControls;
   initialized = false;
   partSummary: any[] = [];
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     this.initScene();
@@ -95,6 +99,7 @@ export class ProjectDiagramComponent
     this.drawSteelcase();
     this.drawBoxes();
     this.fitCamera();
+    this.cdr.detectChanges();
   }
 
     drawSteelcase() {

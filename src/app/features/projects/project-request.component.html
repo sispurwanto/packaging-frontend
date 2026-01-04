@@ -53,11 +53,17 @@
 </div>
 
 <!-- DIAGRAM DI BAWAH FORM -->
-<div *ngIf="diagramData.length">
+<div *ngIf="diagramData.length && projectId">
+  <!-- <app-export
+    [projectId]="projectId">
+  </app-export> -->
+
   <app-steelcase-selector
+    [projectId]="projectId"
     [steelcases]="diagramData"
     [steelcaseUsed]="steelcaseUsed"
     [steelcaseData]="steelcaseData"
+    [steelcaseItems]="steelcaseItems"
     (selected)="selectedSteelcase = $event">
   </app-steelcase-selector>
 

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
 import { ProjectDiagramComponent } from './diagram/project-diagram.component';
 import { SteelcaseSelectorComponent } from './diagram/steelcase-selector.component';
+// import { ExportComponent } from './export/part.component';
 
 @Component({
     selector: 'app-project-request',
@@ -14,7 +15,8 @@ import { SteelcaseSelectorComponent } from './diagram/steelcase-selector.compone
         CommonModule, 
         ReactiveFormsModule,
         ProjectDiagramComponent,
-        SteelcaseSelectorComponent
+        SteelcaseSelectorComponent,
+        // ExportComponent
     ],
     templateUrl: './project-request.component.html' 
 })
@@ -27,6 +29,8 @@ export class ProjectRequestComponent implements OnInit{
     selectedSteelcase:any;
     steelcaseUsed: any = 0;
     steelcaseData: any = {};
+    projectId?: string;
+    steelcaseItems: any[] = [];
 
     constructor(
         private fb: FormBuilder,
@@ -75,10 +79,12 @@ export class ProjectRequestComponent implements OnInit{
             next: (res: any) => {
                 alert('Project berhasil diproses');
                 const data = res;
+                this.projectId = data.project_id;
                 this.diagramData = data.visualization_3d;
                 this.selectedSteelcase = this.diagramData[0];
                 this.steelcaseUsed = data.steelcases_used;
                 this.steelcaseData = data.steelcase_data;
+                this.steelcaseItems = data.steelcases || [];
             },
             error: err => {
                 console.error(err);

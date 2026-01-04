@@ -22,6 +22,8 @@ import { SteelcaseSelectorComponent } from '../diagram/steelcase-selector.compon
   steelcaseUsed: any = 0;
   selectedSteelcase:any;
   steelcaseData: any = {};
+  projectId: any;
+  steelcases: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +35,7 @@ import { SteelcaseSelectorComponent } from '../diagram/steelcase-selector.compon
     // const id = Number(this.route.snapshot.paramMap.get('id'));
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
+      this.projectId = id;
       this.load(id);
     }
   }
@@ -46,23 +49,24 @@ import { SteelcaseSelectorComponent } from '../diagram/steelcase-selector.compon
         this.steelcaseUsed = res.steelcases_used || 0;
         this.selectedSteelcase = this.diagramData[0];
         this.steelcaseData = res.steelcase_data || {};
+        this.steelcases = res.steelcases || [];
         this.loading = false;
       },
       error: () => this.loading = false
     });
   }
 
-  exportExcel(): void {
-    this.api.exportProjectExcel(this.project.project_id)
-      .subscribe(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `project-${this.project.project_id}.xlsx`;
-        a.click();
-        window.URL.revokeObjectURL(url);
-      });
-  }
+  // exportExcel(): void {
+  //   this.api.exportProjectExcel(this.project.project_id)
+  //     .subscribe(blob => {
+  //       const url = window.URL.createObjectURL(blob);
+  //       const a = document.createElement('a');
+  //       a.href = url;
+  //       a.download = `project-${this.project.project_id}.xlsx`;
+  //       a.click();
+  //       window.URL.revokeObjectURL(url);
+  //     });
+  // }
 
   cancel() {
     this.router.navigate(['/projects']);
