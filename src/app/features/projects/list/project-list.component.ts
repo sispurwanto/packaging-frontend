@@ -13,7 +13,11 @@ import { UUID } from 'crypto';
 export class ProjectListComponent implements OnInit {
 
   projects: any[] = [];
+  meta: any = {};
   loading = false;
+
+  page = 1;
+  limit = 10;
 
   constructor(
     private api: ApiService,
@@ -26,13 +30,22 @@ export class ProjectListComponent implements OnInit {
 
   load(): void {
     this.loading = true;
-    this.api.listProjects().subscribe({
+    // this.api.listProjects().subscribe({
+    this.api.listProjectsByPage(this.page, this.limit).subscribe({
       next: (res: any) => {
-        this.projects = res.projects;
+        console.log(res)
+        this.projects = res.projects.data;
+        this.meta = res.projects.meta
         this.loading = false;
       },
       error: () => this.loading = false
     });
+  }
+
+  changePage(page: number) {
+    if (page < 1 || page === this.page) return;
+    this.page = page;
+    this.load();
   }
 
   create(): void {

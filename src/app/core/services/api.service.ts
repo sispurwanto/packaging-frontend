@@ -37,6 +37,7 @@ export class ApiService {
 
     // projects
     listProjects(){ return this.http.get<Project[]>(`${environment.apiUrl}/project`); }
+    listProjectsByPage(page: number, limit: number){ return this.http.get<any>(`${environment.apiUrl}/project/page?page=${page}&limit=${limit}`); }
     getProject(id:string){ return this.http.get<Project>(`${environment.apiUrl}/re_packing/${id}`); }
     // createProject(p:Project){ return this.http.post(`${environment.apiUrl}/packing`, p); }
     createProject(payload: {

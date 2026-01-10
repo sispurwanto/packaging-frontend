@@ -255,6 +255,19 @@ table.app-table .qty {
   border-radius: 8px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.page-info {
+  font-weight: 500;
+}
+
+
 /* ===============================
    LOGIN PAGE
 ================================ */
